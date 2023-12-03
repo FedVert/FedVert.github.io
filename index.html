@@ -4,57 +4,18 @@
   <meta charset="UTF-8">
   <title>Federated Learning Over Images: Vertical Decompositions and Pre-Trained Backbones Are Difficult to Beat</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" media="screen,projection">
-  <link rel="stylesheet" href="./style.css">
-  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <link rel="stylesheet" href="./static/css/index.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="https://kit.fontawesome.com/5dafecf239.js" crossorigin="anonymous"></script>
+  <link rel="icon" href="./static/images/rice.png">
+
   <!-- <script>
       document.addEventListener('DOMContentLoaded', function() {
       var elems = document.querySelectorAll('.materialboxed');
       var instances = M.Materialbox.init(elems, options);
       });
   </script> -->
-  <style>
-  /* Apply justification to paragraphs */
-  p {
-    text-align: justify;
-    margin: 0;
-    padding: 10px; /* Add padding for spacing */
-  }
-
-  h6 {
-    text-align: justify;
-    margin: 0;
-    padding: 10px; /* Add padding for spacing */
-    line-height: 2;
-  }
-
-  /* Add a divider style for separation */
-  .divider {
-    width: 100%;
-    border-bottom: 1px solid #ccc;
-    margin: 20px 0;
-  }
-
-  .image-row {
-      width: 100%;
-      text-align: justify;
-      overflow: auto; /* Clearfix for the floating elements */
-  }
-
-  .image-row img {
-      width: 48%; /* Adjust based on your requirement */
-      vertical-align: top;
-      display: inline-block; /* Alternative to float */
-  }
-
-  .image-left {
-      float: left;
-  }
-
-  .image-right {
-      float: right;
-  }
-</style>
 </head>
 <body class="section">
     <div class="section">
@@ -74,9 +35,17 @@
                 </h6>
                 <h5 class="flow-text col s12 m10">
                   <div class="center">
-                    <i class="ai ai-obp ai-1x"></i> <a href=" "><b>Paper</b></a>
-                    <!-- &emsp; <i class="ai ai-open-materials ai-1x"></i> <a href=""><b>Dataset [coming soon!]</b></a> -->
-                    &emsp; <i class="ai ai-open-materials ai-1x"></i> <a href=""><b> Code & Data [coming soon!]</b></a>
+                    <i class="ai ai-cv ai-1x"></i> <a href="https://openaccess.thecvf.com/content/ICCV2023/html/Hu_Federated_Learning_Over_Images_Vertical_Decompositions_and_Pre-Trained_Backbones_Are_ICCV_2023_paper.html">
+                      <b>Paper</b>
+                    </a>
+                    &emsp;
+                    <i class="ai ai-arxiv ai-1x"></i> <a href="https://arxiv.org/abs/2309.03237">
+                      <b>Arxiv</b>
+                    </a>
+                    &emsp;
+                    <i class="fa fa-github fa-1x"></i> <a href="">
+                      <b>Code</b>
+                    </a>
 <!--                     <br><br> -->
                     <br>
                     </div>
@@ -183,23 +152,23 @@
 
                <div class="row">
                 <div class="col s2 m2 l2"></div>
-                <div class="col s8 m8 l8">
+                <div class="col s12 m12 l12">
                     <br>
                     <br>
                     <br>
                     <div class="divider"></div>
                     <h6 class="center"><b>BibTeX</b></h6>
-                    <blockquote>
-                    <font face="Courier New">
-                        @misc{ <br>
-                            &nbsp; &nbsp; title={}, <br>
-                            &nbsp; &nbsp; author={}, <br>
-                            &nbsp; &nbsp; year={}, <br>
-                            &nbsp; &nbsp; eprint={}, <br>
-                            &nbsp; &nbsp; archivePrefix={}, <br>
-                            &nbsp; &nbsp; primaryClass={}
-                        }
-                    </font>
+                    <blockquote style="border-left:none; padding-left:none; padding:1.5rem">
+                      <pre><code>
+                      @InProceedings{Hu_2023_ICCV,
+                          author    = {Hu, Erdong and Tang, Yuxin and Kyrillidis, Anastasios and Jermaine, Chris},
+                          title     = {Federated Learning Over Images: Vertical Decompositions and Pre-Trained Backbones Are Difficult to Beat},
+                          booktitle = {Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV)},
+                          month     = {October},
+                          year      = {2023},
+                          pages     = {19385-19396}
+                      }
+                      </code></pre>
                     </blockquote>
                 </div>
                 <div class="col s2 m2 l2"></div>

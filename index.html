@@ -76,45 +76,45 @@
                <div class="row">
                 <div class="col s12">
                     <h5 class="center"><b>Overview</b></h5><br>
-                    <h6> In order to improve the ability of vision-and-language models to perform localization, many methods have incorporated further finetuning with either box or segment annotations, or rely on pretrained object detectors or box proposal networks.
-                      Our work instead aims to improve the localization capabilities of models trained only on image-text pairs through weak supervision.
-                      But, how can we improve the ability of a model to localize objects without access to object location annotations? 
-                      Consider the example in Figure below, where a model is tasked with pointing to the location of the object <em>frisbee</em> in this image. 
-                      The baseline model succeeds at finding the object but is unsuccessful at locating the object when prompted with the equivalent but more generic name <em>disc</em>. 
-                      Regardless of the ability for the base model to find either of these, the visual explanations for these two prompts should be the same since the query refers to the very same object in both cases. 
-                      Our work exploits this property by first generating paraphrases using a large language model and then proposing a weakly-supervised <b>Self</b>-consistency <b>EQ</b>uivalence Tuning (SelfEQ) objective 
-                      that encourages consistent visual explanations between paraphrased input text pairs that refer to the same object or region in a given image.
-                        <br><br>
-                      <p class="center">
-                      <img class="teaser" src="teaser.png" width="80%">
-                      </p>
+                    <h6>
+                      In the cross-device setting of federated learning, device resources, in particular computation and communication, are often limited making standard full training of the model infeasible. 
+                      Distributed gradient descent, equivalent to centralized stochastic gradient descent, achieves high accuracy but at the cost of expensive computation and communication. Consequently, final accuracy alone does not make sense in a federated setting.  
+                      A common approach is to evaluate accuracy over communication rounds; however, this approach inherently favors algorithms which performs more computation per round, which again does not make sense in a federated setting. We instead 
+                      consider accuracy as a function of both communication cost (Bytes tranferred) and computation cost (Floating point operations used) to more fairly and realistically benchmark federated algorithms.
+
+                      Moreover, a common benchmark for evaluation is CIFAR-100. This dataset includes a very diverse set of classes - whales, chairs, dinosaurs, etc. However, we are concerned few federated tasks will involve differentiating whales from chairs. 
+                      We argue instead that it makes more sense to evaluate on a very broad range of datasets, in our case primarily from the fine-grained classifcation task. Additionally, retuning hyperparameters, e.g. 
+                      learning rate, proximal weights, batch size, architecture, etc., is expensive in this resource-constrained environment and therefore we propose that off-shelf tuned performance is a more realistic setting.  
+
+                      We present a set of benchmarks and experiments in the federated learning setting. First we demonstrate that pre-trained feature extractors are a necessary baseline in federated learning as fully training a model is drastically more expensive in comparison. 
+                      Similarly, we find that decomposition methods such as IST achieve generally lower bytes transferred and FLOP for the same threshold accuracy across most datasets. While we do not propose any particular algorithm, our results suggest
+                      a combination of pre-trained backbones and vertical decomposition (FedVert) perform well in this resource-constrained federated learning setting. 
+                    </h6>
+                    
+                    <p class="center">
+                      <img class="teaser" src="./static/images/fedvert_diagram.png" width="80%">
+                    </p>
                 </div>
 
               <div class="col s2 m2 l2"></div>
                <div class="row">
                 <div class="col s12">
-                    <h5 class="center"><b>Method</b></h5><br>
-                    <h6> Given a base pre-trained vision-and-language model purely trained on image-text pairs such as ALBEF, 
-                      SelfEQ tunes the model so that for a given input image and text pair, 
-                      the visual attention map extracted using GradCAM produces a similar visual attention map when provided with the same image and a text paraphrase. 
-                      The figure below provides an overview of our method. 
-                      Another contribution of our work consists in exploiting a large language model (LLM) to automatically generate paraphrases for existing datasets 
-                      such as Visual Genome that contains textual descriptions of individual objects and regions, or MS-COCO and CC3M that contain global image descriptions. 
-                      We find that SelfEQ not only expands the vocabulary of objects that the base model is able to localize but more importantly, improves the visual grounding capabilities of the model. 
+                    <h5 class="center"><b>Experimental Setup</b></h5><br>
+                    <h6> 
+                      For the pre-trained backbone we concatenate the output features of two CNNs pre-trained on the ImageNet dataset, ResNet101 and DenseNet121, together. For most algorithms evaluated we 
+                      train an MLP classifier layer with the pre-trained backbone features as inputs. 
+
+                      We evaluate on a diverse and broad range of image classification datasets: <a target="_blank" href="https://www.vision.caltech.edu/datasets/cub_200_2011/">CUB-200-2011</a>, 
+                      <a target="_blank" href="https://ai.stanford.edu/~jkrause/papers/fgvc13.pdf">Stanford Cars</a>, <a target="_blank" href="https://www.robots.ox.ac.uk/~vgg/data/flowers/102/index.html">VGGFLowers</a>, 
+                      <a target="_blank" href="https://www.robots.ox.ac.uk/~vgg/data/fgvc-aircraft/">Aircraft</a>, <a target="_blank" href="https://www.robots.ox.ac.uk/~vgg/data/dtd/">Describable Textures</a>, 
+                      <a target="_blank" href="https://www.cs.toronto.edu/~kriz/cifar.html">CIFAR-100</a>. These datasets are sampled to clients of our FL simulation by Dirichlet distribution. 
+
+                      For evaluation, we determine the highest convergent accuracy among algorithms and use 90% of this as the threshold accuracy. We measure the amount of FLOPs and bytes transferred needed for
+                      each method to reach this threshold. 
+                      <br><br>
+                      More details can be found in the paper.
                     </h6>
-                        <br><br>
-                    <p class="center">
-                        <img class="MethodDiagram" src="MethodDiagram.png" width="80%">
-                    </p>
                 </div>
-                <div class="col s2 m2 l2"></div>
-                <div class="col s8 m8 l8">
-                    <h6>Overview of our proposed weakly-supervised <b>Self</b>-consistency <b>EQ</b>uivalence tuning objective.
-                         We input image-text and image-paraphrase pairs &langle;V, T&rangle; and &langle;V, T<sup>e</sup>&rangle; to our base pre-trained vision-and-language model.
-                         We then obtain gradient-based visual explanations &langle;G, G<sup>e</sup>&rangle; and compute a similarity loss between them.
-                         We also define an overlapping region of interest mask and encourage the model to predict consistently high saliency scores within this mask for each input pair.</h6>
-                </div>
-                <div class="col s2 m2 l2"></div>
                </div>
 
                <!-- //////////////////////////// -->
